@@ -1,0 +1,20 @@
+[Unit]
+Description=aortic edu website (youtube feed service)
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=www-data
+WorkingDirectory=/opt/aortic-edu
+Environment=NODE_ENV=production
+Environment=PORT=3000
+Environment=HOST=127.0.0.1
+# optional: skip the automatic lookup by setting the channel id
+# Environment=CHANNEL_ID=UCxxxxxxxxxxxxxxxxxxxxxx
+ExecStart=__NODE__ server/index.js
+Restart=always
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target
